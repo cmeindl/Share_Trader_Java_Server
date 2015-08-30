@@ -10,10 +10,11 @@ import java.util.Properties;
  */
 public class Config {
 
-    public void Config() {
+    public  Config() {
        DBServer = ReadSettings("DBServer");
         DBUser = ReadSettings("DBUser");
         DBPassword = ReadSettings("DBPassword");
+        Database = ReadSettings("Database");
     }
 
     private String ReadSettings(String SettingID) {
@@ -25,7 +26,7 @@ public class Config {
             // load a properties file
             prop.load(input);
             // get the property value and print it out
-            RTstring = (prop.getProperty("database"));
+            RTstring = (prop.getProperty(SettingID));
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
@@ -53,9 +54,14 @@ public class Config {
         return DBPassword;
     }
 
+    public String getDatabase() {
+        return Database;
+    }
+
     private  String DBServer;
     private String DBUser;
     private String DBPassword;
+    private String Database;
 
 
 }

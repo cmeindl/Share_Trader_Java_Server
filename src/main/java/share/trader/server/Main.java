@@ -8,6 +8,9 @@ public class Main {
 
 
         Config CFC = new Config();
+        System.out.println(CFC.getDBPassword());
+        System.out.println(CFC.getDBUser());
+        System.out.println(CFC.getDBServer());
        // CFC.WriteSettings("DB2","DBString2");
 	// write your code here
     }
