@@ -15,6 +15,7 @@ public class Config {
         DBUser = ReadSettings("DBUser");
         DBPassword = ReadSettings("DBPassword");
         Database = ReadSettings("Database");
+        TradeFileDir = ReadSettings("TradeFiles");
     }
 
     private String ReadSettings(String SettingID) {
@@ -58,10 +59,15 @@ public class Config {
         return Database;
     }
 
+    public String getTradeFileDir() {
+        return TradeFileDir;
+    }
+
     private  String DBServer;
     private String DBUser;
     private String DBPassword;
     private String Database;
+    private String TradeFileDir;
 
 
 }

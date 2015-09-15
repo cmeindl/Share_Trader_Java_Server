@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 
 
 
-public class Java_Access {
 
+public class Java_Access {
 
 
     public Java_Access(Config SettingsC) {
@@ -33,8 +33,10 @@ public class Java_Access {
     private ResultSet rs = null;
 
     public void SetPreparedStatement(String sql) {
+
+
         try {
-            pst = con.prepareStatement(sql);
+                pst = con.prepareStatement(sql);
         } catch (SQLException ex) {
         }
 
