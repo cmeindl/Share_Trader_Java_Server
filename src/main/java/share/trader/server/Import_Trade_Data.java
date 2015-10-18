@@ -3,13 +3,7 @@ package share.trader.server;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Cameron on 14/09/2015.
@@ -36,7 +30,9 @@ public class Import_Trade_Data {
         File F = new File(FileDir);
         File[] SubFiles = F.listFiles();
         for (File TheFile : SubFiles) {
-            FileList.add(TheFile.getAbsolutePath() );
+            if (!TheFile.isDirectory()) {
+                FileList.add(TheFile.getAbsolutePath());
+            }
 
         }
     }
@@ -45,26 +41,26 @@ public class Import_Trade_Data {
         ArrayList<Ticker_Line_Item> TLI = new ArrayList<Ticker_Line_Item>();
         BufferedReader BR;
         String line = "";
-         String SplitBy = ",";
+        String SplitBy = ",";
 
-        try{
+        try {
 
             BR = new BufferedReader(new FileReader(Filename));
             BR.readLine();
-            while((line = BR.readLine()) != null){
-            String ShareData[] = line.split(SplitBy);
+            while ((line = BR.readLine()) != null) {
+                String ShareData[] = line.split(SplitBy);
 //                System.out.println(ShareData[0].toString());
-              //  Double high, Double low, BigInteger volume, Boolean newRecord)
-              //  ticker0,date1,open2,close5,high3, low4,volume6
-                TLI.add(new Ticker_Line_Item(ShareData[0],ShareData[1],Double.valueOf(ShareData[2]),Double.valueOf(ShareData[5]),Double.valueOf(ShareData[3]),Double.valueOf(ShareData[4]),Double.valueOf(ShareData[6]),"D",true  ));
+                //  Double high, Double low, BigInteger volume, Boolean newRecord)
+                //  ticker0,date1,open2,close5,high3, low4,volume6
+                TLI.add(new Ticker_Line_Item(ShareData[0], ShareData[1], Double.valueOf(ShareData[2]), Double.valueOf(ShareData[5]), Double.valueOf(ShareData[3]), Double.valueOf(ShareData[4]), Double.valueOf(ShareData[6]), "D", true));
 //Ticker,Date,OPen,High,Close,Low,Volume
             }
 
 
-        }catch(Exception ex){
-System.out.println(ex.toString());
-    }
-    return TLI;
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        return TLI;
     }
 
 

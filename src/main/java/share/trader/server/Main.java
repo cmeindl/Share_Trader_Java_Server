@@ -20,6 +20,8 @@ public class Main {
         ArrayList<Ticker_Line_Item> TLI =  new ArrayList<Ticker_Line_Item>();
    for (String DaFile : ALS) {
        TLI.addAll(ITD.LoadDataFromFile(DaFile));
+       System.out.println(TLI.size());
+      // System.out.println(TLI.get(10).getSDate());
    }
        System.out.println("Here");
     System.out.println(TLI.get(10).getTicker());
